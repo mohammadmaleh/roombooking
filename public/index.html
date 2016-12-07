@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Room_Booking">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <title>Room Booking</title>
+    <!--here is the main index i just called the bundles where i gather the css and the js files all together from all the project .. no need for loading libraries and multiple js files-->
+    <link href="app.css" rel="stylesheet">
+
+    <script src="bundle.js"></script>
+    <link href="vendor.css" rel="stylesheet">
+    <!--this shameful, i had a problem with gulp minifiying bootstrap and i didnt have time to solve it  so i loaded bootstrap like noobs here because its just a prototype
+    but i dont do this usually by my standards -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body  ng-controller="MainCtrl">
+
+ <!--this directive to show the ui view ... every ui loaded is gonna show here-->
+<!--also usually  i put header and footer and left menu here  :) -->
+ <div ui-view ></div>
+
+
+
+</body>
+</html>

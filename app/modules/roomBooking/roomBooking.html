@@ -1,0 +1,468 @@
+
+
+    <div class="room-booking-container" >
+
+
+        <nav class="navbar navbar-default room">
+            <div class="container-fluid row ">
+                <div class="form-inline">
+                    <div class="form-group" >
+                        <h3>Room Booking Prototype</h3>
+                    </div>
+                    <div class="form-group header-inputs">
+                        <div class="input-group">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" readonly='true' uib-datepicker-popup="{{roomBookingVm.format}}" ng-model="roomBookingVm.selectedDate"  ng-change="roomBookingVm.getRooms()" is-open="roomBookingVm.popup1.opened" datepicker-options="roomBookingVm.dateOptions" ng-required="true" close-text="Close" alt-input-formats="roomBookingVm.altInputFormats" />
+                                <div class="input-group-addon">
+
+                                    <button type="button" class=" btn select-date-btn " ng-click="roomBookingVm.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group header-inputs ">
+                        <button class="btn-default btn filter-btn" ng-click="filterCollapsed = !filterCollapsed" > Filters <i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+
+
+
+                <form class="form-inline  collapse"  uib-collapse="!filterCollapsed" id="filter">
+
+                    <div class="form-group">
+                        <label >Available Today: </label>
+                        <input ng-model="searchAvailable" type="checkbox" class="checkbox">
+                    </div>
+                    <div class="form-group">
+                        <label >city:</label>
+                        <input type="text" class="form-control" ng-model="searchText" placeholder="Search city">
+
+                    </div>
+                    <div class="form-group">
+
+                        <label >price Range: </label>
+
+                        <input type="text" class="form-control range-input" ng-init="searchMinPrice =0 " ng-model="searchMinPrice"  placeholder="Min Price">
+                        <input type="text" class="form-control range-input" ng-init="searchMaxPrice =1000 " ng-model="searchMaxPrice"  placeholder="Max Price">
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                </form>
+
+
+
+
+
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col col-xl-9 col-lg-6 col-sm-12 col-md-12 col-xs-12" >
+                     <div class="rooms-container">
+                         <div class=" rooms-list-header">
+                             <div class="row">
+                                 <div class="col col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                     <div class="date-left-arrow">
+                                         <span class="glyphicon glyphicon-chevron-left"  ng-click="roomBookingVm.prevDay()"></span>
+                                     </div>
+                                 </div>
+                                 <div class="col col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                     <H2 class=" header-date">{{roomBookingVm.HeaderDate}}</H2>
+                                 </div>
+                                 <div class="col col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                     <div class="date-right-arrow">
+                                         <span class="glyphicon glyphicon-chevron-right" ng-click="roomBookingVm.nextDay()"></span>
+                                     </div>
+                                 </div>
+                             </div>
+
+
+
+
+                         </div>
+                         <ul class="list-group " >
+                             <li class="list-group-item room-item" ng-repeat="room in roomBookingVm.roomList | filter:{ location: searchText} | filter: roomBookingVm.priceFilter(searchMinPrice,searchMaxPrice)| filter: roomBookingVm.availableFilter(searchAvailable)" ng-click="roomBookingVm.selectionsChanged(room.location)">
+                                 <div class="row">
+                                     <div class="col col-lg-4 col-md-6  col-sm-4 col-xs-4">
+                                         <div class="">
+                                             <img ng-src="{{room.images[0]}}" class="img-rounded pull-left " alt="Cinque Terre" width="165" >
+
+                                         </div>
+                                     </div>
+                                     <div class="col col-lg-4 col-md-6  col-sm-6 col-xs-4">
+                                         <div class="row">
+                                             <canvas  class="room-list-timeline" width="500" height="30px" >
+                                                 <timeline room="{{room}}"></timeline>
+                                             </canvas>
+                                         </div>
+                                         <div class="basic-information">
+                                             <div class="row">
+                                                <strong><a href="#" class="room-name"> {{room.name}}</a></strong>
+                                             </div>
+                                             <div class="row">
+                                                 <strong><p class="room-price"> {{room.price}} €</p></strong>
+
+                                             </div>
+                                             <div class="row">
+                                                 <span class="glyphicon glyphicon-map-marker room-location"></span>&#160;{{room.location}}
+                                             </div>
+                                         </div>
+
+
+                                     </div>
+
+
+                                 </div>
+                                 <div class="row show-more-details">
+                                     <a  class=" pull-right" ng-init="room.isCollapsed=true" ng-click="room.isCollapsed = !room.isCollapsed">more detials .... </a>
+
+                                 </div>
+                                 <div uib-collapse="room.isCollapsed">
+                                     <div class="well well-lg">
+                                         <fieldset>
+
+                                             <div class="row slider-container">
+                                                 <section class="col">
+                                                     <div uib-carousel active="active" interval="roomBookingVm.myInterval" no-wrap="roomBookingVm.noWrapSlides">
+                                                         <div uib-slide ng-repeat="slide in room.slides track by slide.id" index="slide.id">
+                                                             <img ng-src="{{slide.image}}" ng-click="console.log('popup')" style="margin:auto;" width="300">
+
+
+                                                         </div>
+                                                     </div>
+
+
+                                                 </section>
+
+
+                                             </div>
+                                             <div class="row details-div">
+                                                 <section class="col container">
+                                                     <div class="row">
+
+                                                        <strong>Name :</strong> <a href="#"><strong>{{room.name}}</strong></a>
+
+
+                                                     </div>
+                                                     <div class="row">
+
+                                                         <strong>description :</strong>      {{room.description}}
+                                                     </div>
+                                                     <div class="row">
+
+                                                         <strong>location :</strong>  <span class="glyphicon glyphicon-map-marker room-location"></span>&#160;{{room.location}}
+
+
+
+
+                                                     </div>
+                                                     <div class="row">
+                                                         <strong>size :</strong>
+                                                         <strong class="green-color">{{room.size}}</strong> m²
+                                                     </div>
+                                                     <div class="row">
+
+                                                         <strong>capacity :</strong>
+                                                          Up to <strong class="green-color"> {{room.capacity}}</strong> People
+
+
+
+
+
+
+                                                     </div>
+                                                     <div class="row">
+
+                                                         <strong>equipments :</strong>
+                                                         <ul class=" equipment-list">
+                                                             <li ng-repeat=" equ in room.equipment" > <span class="glyphicon glyphicon-wrench"></span> {{equ}}</li>
+                                                         </ul>
+
+
+
+                                                     </div>
+
+
+
+
+                                                 </section>
+                                                 <section>
+                                                     <div class="pull-right">
+                                                         <button class="btn btn-success" ng-click="roomBookingVm.bookNow(room)"> Book Now</button>
+                                                     </div>
+                                                 </section>
+
+                                             </div>
+                                         </fieldset>
+
+                                     </div>
+                                 </div>
+
+
+
+
+                             </li>
+                             <li class="list-group-item room-item no-room-available"  ng-if="roomBookingVm.roomList.length == 0" >There Is No Rooms Available This Date :(</li>
+
+                         </ul>
+
+                     </div>
+
+                </div>
+
+                <div  class="col col-xl-6  col-lg-6 col-xl-7 col-sm-12 col-md-12 col-xs-12  " >
+
+                    <div  map-lazy-load="https://maps.google.com/maps/api/js"
+                         map-lazy-load-params="{{roomBookingVm.googleMapsUrl}}" >
+                        <ng-map  style="height: 800px" zoom="5" center="{{center}}"
+                                scrollwheel="false"
+                                zoom-to-include-markers="true">
+                            <marker ng-repeat="c in roomBookingVm.selectedCities"
+                                    position="{{c.pos}}" title="{{c.name}}"></marker>
+                        </ng-map>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+</div>
+
+
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+
+        <select ng-init="userType = 'Pro'" class="form-control select-user pull-right" ng-model="userType">
+            <option value="Pro">Pro</option>
+            <option value="Regular">Regular</option>
+        </select>
+        <h3 class="modal-title" id="modal-title">{{room.name}}</h3>
+        <canvas   width="500" height="30px" >
+            <select-from-timeline ng-model="popupVm.updateDirective"  room="{{room}} " min="{{popupVm.selectedMinValue}}" max="{{popupVm.selectedMaxValue}}"></select-from-timeline>
+        </canvas>
+    </div>
+
+    <div class="modal-body" id="modal-body">
+        <div class="container-body ">
+
+
+            <form name="popupVm.bookingForm">
+
+
+
+                <fieldset>
+                    <div class="raw">
+                        <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12  ">
+                            <div class="row ">
+
+                                <section class="col select-time-text">
+                                    <strong>Please Select time to Reserve:</strong>
+                                </section>
+                            </div>
+                            <div class="row ">
+
+
+                                <section class="col select-time"  ng-show="userType == 'Pro'">
+                                    <rzslider rz-slider-model="popupVm.slider.minValue"
+                                              rz-slider-high="popupVm.slider.maxValue"
+                                              rz-slider-options="popupVm.slider.options"></rzslider>
+                                </section>
+                                <section class="row " ng-show="userType == 'Regular'">
+                                    <div class="col col-lg-2  ">
+                                        <label>From :</label>
+
+                                        <div uib-timepicker ng-model="popupVm.manualSelectedMinValue"  onkeydown="return false" ng-change="popupVm.changeManualDate()" hour-step="1" minute-step="15" show-meridian="ismeridian"></div>
+                                    </div>
+                                    <div class="col  col-lg-2  ">
+                                        <label>To :</label>
+
+                                        <div uib-timepicker ng-model="popupVm.manualSelectedMaxValue"  onkeydown="return false" ng-change="popupVm.changeManualDate()" hour-step="1" minute-step="15" show-meridian="ismeridian"></div>
+                                    </div>
+                                </section>
+                                <section class="col">
+                                    <form  name="attendeeForm" >
+                                        <fieldset class="attendee-form">
+
+                                            <div class="row event-details ">
+                                                <div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6   form-group ">
+                                                    <label>Event Title:</label>
+                                                    <input class="form-control pull-left"  ng-class="popupVm.showEventTitleError ? 'red-border' :''"   name="eventTitle" ng-model="popupVm.eventTitle">
+                                                    <p type="text"  ng-if="popupVm.showEventTitleError" class="text-danger pull-left" >please enter an Event Title</p>
+
+                                                </div>
+                                                <div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6   form-group ">
+                                                    <label>Event Description:</label>
+                                                    <textarea class="form-control pull-left"  rows="3" ng-class="popupVm.showEventDescriptionError ? 'red-border' :''"   name="eventDescription"  ng-model="popupVm.eventDescription"></textarea>
+
+                                                    <p type="text" ng-if="popupVm.showEventDescriptionError" class="text-danger pull-left" >Please Enter Event Description </p>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row attendees-count ">
+                                                <div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6   form-group ">
+
+
+                                                    <label>Attendees Count :</label>
+                                                    <input class="form-control pull-right" type="number" ng-model="popupVm.attendeeCount">
+
+
+                                                </div>
+                                            </div>
+                                            <div  class="row" ng-show="popupVm.attendeeCount <= 0">
+
+                                                <p type="text" class="text-danger" >attendee number should be more then zero</p>
+
+
+
+                                            </div>
+
+                                            <div class="raw">
+
+                                                <div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6   form-group ">
+
+
+
+
+                                                    <div ng-show="popupVm.attendeeCount >0">
+                                                        <div class="row">
+                                                            <section class="col Please-enter-attendees-details">
+                                                                <strong class="green-color">Please Enter Attendees Details: </strong>
+                                                            </section>
+                                                        </div>
+                                                        <div class="row">
+                                                            <section class="col">
+                                                                <label>Name :</label>
+                                                                <input type="text" class="input form-control attendee-name" ng-class="popupVm.showNameError ? 'red-border' :''" name="attendeeName" ng-model="popupVm.attendeeName">
+
+
+                                                            </section>
+                                                        </div>
+                                                        <div class="row" ng-if="popupVm.showNameError">
+                                                            <section class="col">
+
+                                                                <p  class="text-danger" >Invalid Name</p>
+
+
+                                                            </section>
+                                                        </div>
+                                                        <div class="row">
+                                                            <section class="col">
+                                                                <label>Email :</label>
+                                                                <input type="text" ng-class="popupVm.showEmailError ? 'red-border' :''" name="attendeeEmail" class="input form-control attendee-email" ng-model="popupVm.attendeeEmail">
+
+                                                            </section>
+                                                        </div>
+                                                        <div class="row" ng-if="popupVm.showEmailError">
+                                                            <section class="col">
+
+                                                                <p type="text" class="text-danger" >Invalid Email</p>
+
+
+                                                            </section>
+                                                        </div>
+                                                        <div class="row">
+                                                            <section class="col">
+                                                                <label>Phone :</label>
+
+                                                                <input type="tel"  name="attendeePhone"  ng-class="popupVm.showPhoneError ? 'red-border' :''"class="input form-control" ng-model="popupVm.attendeePhone">
+
+                                                            </section>
+                                                        </div>
+                                                        <div class="row" ng-if="popupVm.showPhoneError">
+                                                            <section class="col">
+
+                                                                <p type="text" class="text-danger" >Invalid Phone</p>
+
+
+                                                            </section>
+                                                        </div>
+                                                        <div class="row">
+                                                            <section class="col">
+
+
+                                                                <button type="submit" class="btn btn-success" ng-click="popupVm.addAttendee()">Add</button>
+
+                                                            </section>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6   ">
+
+                                                    <div >
+                                                        <div class="row">
+                                                            <div class="col attendee-list-text">
+                                                               <strong>Attendees List :</strong>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col attendee-list" >
+                                                                <ul >
+
+                                                                    <li ng-repeat="attendee in popupVm.attendeeList track by $index" class="">
+                                                                        <label class="label label-success"  uib-popover-html="popupVm.htmlPopover" ng-mouseenter="popupVm.loadAttendeeData(attendee)" popover-trigger="'mouseenter'">
+                                                                            {{attendee.name}}
+                                                                            <i  ng-click="popupVm.deleteAttendee($index)" class="glyphicon glyphicon-remove"/>
+                                                                        </label>
+
+                                                                    </li>
+
+                                                                </ul>
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </section>
+
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+
+
+
+
+
+
+
+            </form>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="popupVm.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="popupVm.cancel()">Cancel</button>
+    </div>
+</script>

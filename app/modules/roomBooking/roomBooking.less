@@ -1,0 +1,607 @@
+//html{
+//  min-height:100%;/* make sure it is at least as tall as the viewport */
+//  position:relative;
+//  background-color: green;
+//}
+body{
+  height:100%; /* force the BODY element to match the height of the HTML element */
+  background-color: green;
+}
+
+@red-color: #E31E2F;
+@blue-color: #00A0DB;
+@navi-color: #362A83;
+@pimpe-color: #A01F80;
+@pink-color: #E40274;
+@orange-color: #EC7B23;
+@yellow-color: #FFE900;
+@light-green-color: #9ABD36;
+@green-color: #009547;
+.room-booking-container{
+
+  .container{
+    width: 100% !important;
+  }
+  .range-input{
+
+    width: 75px !important;
+  }
+  .header-inputs{
+    margin-top: 12px;
+  }
+  .rooms-container{
+    overflow-y:auto ;
+    height:800px;
+    min-width: 800px;
+    padding:10px;
+    border: 1px solid #ddd;
+
+    .well {
+      background-color: #fbfbfb;
+      border-color: @light-green-color;
+    }
+    .btn{
+      padding-top: 9px;
+      font-weight: bold;
+    }
+    .room-list-timeline{
+      margin-left: -25px;
+    }
+    .show-more-details{
+      margin-top: -20px;
+      margin-right: 5px;
+
+    }
+    .basic-information{
+      padding: 0;
+      margin-left: -19px;
+      .room-name{
+        font-size: 20px;
+      }
+      .room-price{
+        font-weight: bold;
+        color: black;
+        margin-bottom: 0px;
+      }
+      .room-location{
+        font-weight: bolder;
+        margin-top: -31px;
+      }
+      .room-location-name{
+        margin-left: 3px;
+      }
+    }
+
+    .rooms-list-header{
+      text-align: center;
+      color: @green-color;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+    .room-item{
+      background-color: white;
+      padding:20px;
+      margin-bottom: 5px;
+
+    }
+    .details-div{
+      padding:10px;
+      .row{
+        margin-bottom: 3px;
+      }
+    }
+    .green-color{
+      color: @green-color;
+    }
+    .m2{
+           color: @red-color;
+         }
+    .glyphicon-wrench{
+      color: lightslategrey;
+    }
+    .glyphicon-map-marker{
+      color:@red-color
+    }
+    .room-item:hover{
+      border: 2px solid @light-green-color ;
+      background-color:              #dcf7e9;
+      cursor: pointer;
+      padding:20px;
+
+
+    }
+    .equipment-list{
+      list-style-type: none;
+    }
+    .slider-container{
+      width: 300px!important;
+      text-align: center;
+
+      margin-left: 32%;
+    }
+
+  }
+  .navbar{
+    background-color: @blue-color ;
+    h3{
+      color:white;
+      font-weight: bolder;
+      margin-left: 10px;
+
+    }
+    .filter-bar{
+      padding:10px;
+      label{
+        margin-top: 5px;
+        color:white;
+      }
+    }
+
+  }
+  .header-date{
+    padding-top: 7px;
+   }
+  .filter-btn{
+    color: @blue-color;
+    font-weight:bold;
+    padding-top: 9px;
+  }
+  .select-date-btn{
+    margin: -12px;
+    height: 33px;
+    margin-top: -13px;
+  }
+  .no-room-available{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bolder;
+    color: @red-color;
+
+    background-color: #efdbd9 !important;
+    border-color: @red-color !important;
+
+  }
+  .form-inline{
+    margin-bottom: 20px;
+    label{
+      color: white;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .form-group{
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+   }
+  .date-right-arrow{
+    height: 98px;
+
+    /* margin-top: -73px; */
+    padding-top: 28px;
+    /* margin-left: 88px; */
+    padding-left: 32px;
+    padding-bottom: 33px;
+    text-align: center;
+    padding-right: 30px;
+    margin-top: -10px;
+    font-size: 28px;
+    margin-right: -11px;
+    margin-bottom: -24px;
+    padding-top: 33px;
+    :hover{
+      color: @green-color;
+    }
+    :active{
+      font-weight: bolder;
+    }
+  }
+  .date-left-arrow{
+    height: 98px;
+
+    /* margin-top: -73px; */
+    padding-top: 28px;
+    /* margin-left: 88px; */
+    padding-left: 22px;
+    padding-bottom: 33px;
+    text-align: center;
+    padding-right: 30px;
+    margin-top: -10px;
+    font-size: 28px;
+    margin-right: -11px;
+    margin-bottom: -24px;
+    padding-top: 30px;
+    :hover{
+      color: @green-color;
+    }
+    :active{
+      font-weight: bolder;
+    }
+  }
+
+}
+.yellow-color{
+  color: @yellow-color;
+  background-color: @yellow-color;
+}
+.modal-header{
+  .select-time-text{
+    margin-bottom: 15px !important;
+  }
+  .select-time{
+    margin-bottom: 15px !important;
+  }
+  .select-user{
+    width: 112px;
+    margin-left: -112px;
+  }
+  color: white;
+  font-weight: bolder;
+  background-color: @blue-color;
+  text-align: center;
+  h3{
+    margin-bottom: 10px;
+  }
+  canvas{
+    margin-left: -5px;
+  }
+}
+.btn{
+  padding-top: 6px !important;
+  font-weight: bold;
+}
+.modal-body{
+  .event-details{
+    //textarea{
+    //  width:390px!important;
+    //}
+    //input{
+    //  width: 410px !important;;
+    //}
+  }
+  .red-border{
+    border-color: @red-color;
+  }
+  .attendee-form{
+    margin-top: 15px;
+    label{
+      margin-top: 7px;
+      margin-right: 10px!important;
+    }
+    .form-control{
+      width: 80%;
+      float: right;
+    }
+    .Please-enter-attendees-details{
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .attendees-count{
+
+      input{
+        float: left!important;
+        width: 75px!important;
+
+      }
+      label{
+        float: left;
+      }
+    }
+    .row{
+      margin-bottom: 5px;
+    }
+
+  }
+
+  .container-body{
+    padding:20px;
+  }
+  .attendee-list-text{
+    margin-top: 16px;
+
+    margin-left: 13px;
+    margin-bottom: -5px;
+  }
+  .attendee-list{
+    background: #fbfbfb;
+    width: 95%;
+    height: 110px;
+    margin-left: 13px;
+    li{
+      list-style-type: none;
+      float: left;
+    }
+  }
+}
+.full button span {
+  background-color: limegreen;
+  border-radius: 32px;
+  color: black;
+}
+.partially button span {
+  background-color: orange;
+  border-radius: 32px;
+  color: black;
+}
+.horizontal-collapse {
+  height: 70px;
+}
+.navbar-collapse.in {
+  overflow-y: hidden;
+}
+
+
+
+/*! angularjs-slider - v5.8.7 -
+ (c) Rafal Zajac <rzajac@gmail.com>, Valentin Hervieu <valentin@hervieu.me>, Jussi Saarivirta <jusasi@gmail.com>, Angelin Sirbu <angelin.sirbu@gmail.com> -
+ https://github.com/angular-slider/angularjs-slider -
+ 2016-11-09 */
+.rzslider {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 4px;
+  margin: 35px 0 15px 0;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.rzslider.with-legend {
+  margin-bottom: 40px;
+}
+
+.rzslider[disabled] {
+  cursor: not-allowed;
+}
+
+.rzslider[disabled] .rz-pointer {
+  cursor: not-allowed;
+  background-color: #d8e0f3;
+}
+
+.rzslider[disabled] .rz-bar-wrapper.rz-draggable {
+  cursor: not-allowed;
+}
+
+.rzslider[disabled] .rz-bar.rz-selection {
+  background: #8b91a2;
+}
+
+.rzslider[disabled] .rz-ticks .rz-tick {
+  cursor: not-allowed;
+}
+
+.rzslider[disabled] .rz-ticks .rz-tick.rz-selected {
+  background: #8b91a2;
+}
+
+.rzslider span {
+  position: absolute;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.rzslider .rz-base {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.rzslider .rz-bar-wrapper {
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 32px;
+  padding-top: 16px;
+  margin-top: -16px;
+  box-sizing: border-box;
+}
+
+.rzslider .rz-bar-wrapper.rz-draggable {
+  cursor: move;
+}
+
+.rzslider .rz-bar {
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 4px;
+  background: #d8e0f3;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.rzslider .rz-bar.rz-selection {
+  z-index: 2;
+  background: silver;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.rzslider .rz-pointer {
+  top: -14px;
+  z-index: 3;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  background-color: silver;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+}
+
+.rzslider .rz-pointer:after {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  content: '';
+}
+
+.rzslider .rz-pointer:hover:after {
+  background-color: #ffffff;
+}
+
+.rzslider .rz-pointer.rz-active {
+  z-index: 4;
+}
+
+.rzslider .rz-pointer.rz-active:after {
+  background-color: @yellow-color;
+}
+
+.rzslider .rz-bubble {
+  bottom: 16px;
+  padding: 1px 3px;
+  color: #55637d;
+  cursor: default;
+}
+
+.rzslider .rz-bubble.rz-selection {
+  top: 16px;
+}
+
+.rzslider .rz-bubble.rz-limit {
+  color: #55637d;
+}
+
+.rzslider .rz-ticks {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 0;
+  margin: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.rzslider .rz-ticks .rz-tick {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  margin-left: 11px;
+  text-align: center;
+  cursor: pointer;
+  background: #d8e0f3;
+  border-radius: 50%;
+}
+
+.rzslider .rz-ticks .rz-tick.rz-selected {
+  background: @yellow-color;
+}
+
+.rzslider .rz-ticks .rz-tick .rz-tick-value {
+  position: absolute;
+  top: -30px;
+  transform: translate(-50%, 0);
+}
+
+.rzslider .rz-ticks .rz-tick .rz-tick-legend {
+  position: absolute;
+  top: 24px;
+  max-width: 50px;
+  white-space: normal;
+  transform: translate(-50%, 0);
+}
+
+.rzslider .rz-ticks.rz-ticks-values-under .rz-tick-value {
+  top: initial;
+  bottom: -32px;
+}
+
+.rzslider.rz-vertical {
+  position: relative;
+  width: 4px;
+  height: 100%;
+  padding: 0;
+  margin: 0 20px;
+  vertical-align: baseline;
+}
+
+.rzslider.rz-vertical .rz-base {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.rzslider.rz-vertical .rz-bar-wrapper {
+  top: auto;
+  left: 0;
+  width: 32px;
+  height: 100%;
+  padding: 0 0 0 16px;
+  margin: 0 0 0 -16px;
+}
+
+.rzslider.rz-vertical .rz-bar {
+  bottom: 0;
+  left: auto;
+  width: 4px;
+  height: 100%;
+}
+
+.rzslider.rz-vertical .rz-pointer {
+  top: auto;
+  bottom: 0;
+  left: -14px !important;
+}
+
+.rzslider.rz-vertical .rz-bubble {
+  bottom: 0;
+  left: 16px !important;
+  margin-left: 3px;
+}
+
+.rzslider.rz-vertical .rz-bubble.rz-selection {
+  top: auto;
+  left: 16px !important;
+}
+
+.rzslider.rz-vertical .rz-ticks {
+  top: 0;
+  left: -3px;
+  z-index: 1;
+  width: 0;
+  height: 100%;
+}
+
+.rzslider.rz-vertical .rz-ticks .rz-tick {
+  margin-top: 11px;
+  margin-left: auto;
+  vertical-align: middle;
+}
+
+.rzslider.rz-vertical .rz-ticks .rz-tick .rz-tick-value {
+  top: initial;
+  left: 24px;
+  transform: translate(0, -28%);
+}
+
+.rzslider.rz-vertical .rz-ticks .rz-tick .rz-tick-legend {
+  top: initial;
+  right: 24px;
+  max-width: none;
+  white-space: nowrap;
+  transform: translate(0, -28%);
+}
+
+.rzslider.rz-vertical .rz-ticks.rz-ticks-values-under .rz-tick-value {
+  right: 24px;
+  bottom: initial;
+  left: initial;
+}
+
+
